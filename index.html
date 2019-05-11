@@ -94,6 +94,15 @@
 <p><strong><em>上述的过程就是人类在小时候学习走路的过程，总而言之就是—–不停的尝试和出错。强化学习就是这样一种通过不同的尝试和出错进行学习的算法。</em></strong></p>
 <h4 id="1-2-强化学习"><a href="#1-2-强化学习" class="headerlink" title="1.2 强化学习"></a>1.2 强化学习</h4><p>强化学习的关键就是agent。在下面的例子中，我们的强化学习agent正在学着玩”超级马里奥“游戏。强化学习的过程可以被建模成下面的迭代循环过程。</p>
 <p><img src="https://cdn-images-1.medium.com/max/800/1*vz3AN1mBUR2cr_jEG8s7Mg.png" alt></p>
+<ul>
+<li><p>agent 从环境中接收状态$ S^0 $</p>
+</li>
+<li><p>基于上述$S^0$，agent会选择一个动作$A^0$，例如：向右移动（刚开始时，选择动作是随机的） </p>
+</li>
+<li>现在，环境进入了一个新的状态$ S^1 $，例如：游戏会进入一个新的画面</li>
+<li>环境将会给agent一个reward值$R^1$，如果马里奥没有死亡，这个值可以设置为正值</li>
+</ul>
+<p>上述循环可以一直执行，知道马里奥到达目的地或者死亡，在此过程中，会不停的输出：<strong>状态，动作，奖励</strong></p>
 <h4 id="1-3-强化学习和普通的监督学习有什么不同？"><a href="#1-3-强化学习和普通的监督学习有什么不同？" class="headerlink" title="1.3 强化学习和普通的监督学习有什么不同？"></a>1.3 强化学习和普通的监督学习有什么不同？</h4><p>​        在普通的监督学习中，我们想要构造一个模型，必须要有数据及label，然后才能在数据上训练出模型。但是对于强化学习，在开始时，没有现成的数据用于模型的训练，需要我们在环境中不对做出尝试，尝试的动作作为数据，尝试的结果（也就是环境做出的反应）作为label，一边进行尝试（生成数据），一边进行学习。</p>
 <h4 id="1-4-强化学习和监督学习有什么相同点？"><a href="#1-4-强化学习和监督学习有什么相同点？" class="headerlink" title="1.4 强化学习和监督学习有什么相同点？"></a>1.4 强化学习和监督学习有什么相同点？</h4><p>​        相同点都是根据数据进行学习，强化学习是学习怎么做出动作；监督学习是学习怎么对未知类别的数据进行分类或者回归。</p>
 <h3 id="2-强化学习的分类"><a href="#2-强化学习的分类" class="headerlink" title="2. 强化学习的分类"></a>2. 强化学习的分类</h3><h4 id="2-1-Model-free和Model-based"><a href="#2-1-Model-free和Model-based" class="headerlink" title="2.1 Model-free和Model-based"></a>2.1 Model-free和Model-based</h4><p>​        Model-Free不需要对环境进行建模，我们也不需要知道转移概率和回报函数。我们只需要学习在状态s下，每个动作的Q值，或者我们直接学习到一个策略指导我们在状态s下应该采取什么样的动作a。问题是Model-Free不知道转移概率，也不知道回报函数，那怎么知道我在状态s下，采取动作a会到达哪个状态呢？答案是直接与环境交互，我们采取动作a，看看我们能到达哪个状态(注意：Model-Based方法并不需要真正执行动作a，因为转移概率和回报函数我们都知道，我们只需要在脑中推演就行)</p>
@@ -118,7 +127,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/05/09/强化学习/" data-id="cjvizogp000017suqfjv4xf6w" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/05/09/强化学习/" data-id="cjvj67now00018suqjeyr5k4p" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/强化学习/">强化学习</a></li></ul>
@@ -165,7 +174,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/05/09/hello-world/" data-id="cjvizogoq00007suqbb8g6dw4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/05/09/hello-world/" data-id="cjvj67nob00008suqzdfwywuf" class="article-share-link">Share</a>
       
       
     </footer>
