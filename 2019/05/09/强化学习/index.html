@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="强化学习本笔记内容来源于多处互联网资料 1 什么是强化学习1.1 我们从一个小孩子学走路的例子开始解释什么是强化学习。我们把这个例子分成两部分： 1.1.1 小孩子开始走路并成功到达了沙发由于沙发是小孩子的目标，因此小孩子和父母都很开心。  因此，小孩子很开心并会从父母那里得到积极的（正）奖励。 1.1.2 小孩子开始走路，再到达沙发之前摔倒了 由于小孩子没有走到沙发，并且摔伤了，因此小孩子在这个">
+<meta name="keywords" content="强化学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="强化学习笔记">
+<meta property="og:url" content="http://www.graypaul.top/2019/05/09/强化学习/index.html">
+<meta property="og:site_name" content="科研狗的博客">
+<meta property="og:description" content="强化学习本笔记内容来源于多处互联网资料 1 什么是强化学习1.1 我们从一个小孩子学走路的例子开始解释什么是强化学习。我们把这个例子分成两部分： 1.1.1 小孩子开始走路并成功到达了沙发由于沙发是小孩子的目标，因此小孩子和父母都很开心。  因此，小孩子很开心并会从父母那里得到积极的（正）奖励。 1.1.2 小孩子开始走路，再到达沙发之前摔倒了 由于小孩子没有走到沙发，并且摔伤了，因此小孩子在这个">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://cdn-images-1.medium.com/max/800/1*sDMJA6qzlo59o7iivh6U6Q.jpeg">
+<meta property="og:image" content="https://cdn-images-1.medium.com/max/800/1*i_999FG_Y-DnlCtpEKb5Vw.jpeg">
+<meta property="og:image" content="https://cdn-images-1.medium.com/max/800/1*vz3AN1mBUR2cr_jEG8s7Mg.png">
+<meta property="og:image" content="https://qph.fs.quoracdn.net/main-qimg-1ef6c0386e80876130d57fe256dde659">
+<meta property="og:updated_time" content="2019-05-14T12:01:59.578Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="强化学习笔记">
+<meta name="twitter:description" content="强化学习本笔记内容来源于多处互联网资料 1 什么是强化学习1.1 我们从一个小孩子学走路的例子开始解释什么是强化学习。我们把这个例子分成两部分： 1.1.1 小孩子开始走路并成功到达了沙发由于沙发是小孩子的目标，因此小孩子和父母都很开心。  因此，小孩子很开心并会从父母那里得到积极的（正）奖励。 1.1.2 小孩子开始走路，再到达沙发之前摔倒了 由于小孩子没有走到沙发，并且摔伤了，因此小孩子在这个">
+<meta name="twitter:image" content="https://cdn-images-1.medium.com/max/800/1*sDMJA6qzlo59o7iivh6U6Q.jpeg">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://www.graypaul.top/2019/05/09/强化学习/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>强化学习笔记 | 科研狗的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">科研狗的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.graypaul.top/2019/05/09/强化学习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="高志朋">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="科研狗的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">强化学习笔记
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-09 19:43:52" itemprop="dateCreated datePublished" datetime="2019-05-09T19:43:52+08:00">2019-05-09</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-14 20:01:59" itemprop="dateModified" datetime="2019-05-14T20:01:59+08:00">2019-05-14</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="强化学习"><a href="#强化学习" class="headerlink" title="强化学习"></a>强化学习</h2><p>本笔记内容来源于多处互联网资料</p>
+<h3 id="1-什么是强化学习"><a href="#1-什么是强化学习" class="headerlink" title="1 什么是强化学习"></a>1 什么是强化学习</h3><h4 id="1-1-我们从一个小孩子学走路的例子开始解释什么是强化学习。"><a href="#1-1-我们从一个小孩子学走路的例子开始解释什么是强化学习。" class="headerlink" title="1.1 我们从一个小孩子学走路的例子开始解释什么是强化学习。"></a>1.1 我们从一个小孩子学走路的例子开始解释什么是强化学习。</h4><p>我们把这个例子分成两部分：</p>
+<h5 id="1-1-1-小孩子开始走路并成功到达了沙发"><a href="#1-1-1-小孩子开始走路并成功到达了沙发" class="headerlink" title="1.1.1 小孩子开始走路并成功到达了沙发"></a>1.1.1 小孩子开始走路并成功到达了沙发</h5><p>由于沙发是小孩子的目标，因此小孩子和父母都很开心。</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*sDMJA6qzlo59o7iivh6U6Q.jpeg" alt></p>
+<p>因此，小孩子很开心并会从父母那里得到积极的（正）奖励。</p>
+<h5 id="1-1-2-小孩子开始走路，再到达沙发之前摔倒了"><a href="#1-1-2-小孩子开始走路，再到达沙发之前摔倒了" class="headerlink" title="1.1.2 小孩子开始走路，再到达沙发之前摔倒了"></a>1.1.2 小孩子开始走路，再到达沙发之前摔倒了</h5><p><img src="https://cdn-images-1.medium.com/max/800/1*i_999FG_Y-DnlCtpEKb5Vw.jpeg" alt></p>
+<p>由于小孩子没有走到沙发，并且摔伤了，因此小孩子在这个过程中得到的是消极的（负）的奖励。</p>
+<p><strong><em>上述的过程就是人类在小时候学习走路的过程，总而言之就是—–不停的尝试和出错。强化学习就是这样一种通过不同的尝试和出错进行学习的算法。</em></strong></p>
+<h4 id="1-2-强化学习"><a href="#1-2-强化学习" class="headerlink" title="1.2 强化学习"></a>1.2 强化学习</h4><p>强化学习的关键就是agent。在下面的例子中，我们的强化学习agent正在学着玩”超级马里奥“游戏。强化学习的过程可以被建模成下面的迭代循环过程。</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*vz3AN1mBUR2cr_jEG8s7Mg.png" alt></p>
+<ul>
+<li><p>agent 从环境中接收状态$ S^0 $</p>
+</li>
+<li><p>基于上述$S^0$，agent会选择一个动作$A^0$，例如：向右移动（刚开始时，选择动作是随机的） </p>
+</li>
+<li>现在，环境进入了一个新的状态$ S^1 $，例如：游戏会进入一个新的画面</li>
+<li>环境将会给agent一个reward值$R^1$，如果马里奥没有死亡，这个值可以设置为正值</li>
+</ul>
+<p>上述循环可以一直执行，直到马里奥到达目的地或者死亡，在此过程中，会不停的输出：<strong>状态，动作，奖励</strong></p>
+<h4 id="1-3-强化学习和普通的监督学习有什么不同？"><a href="#1-3-强化学习和普通的监督学习有什么不同？" class="headerlink" title="1.3 强化学习和普通的监督学习有什么不同？"></a>1.3 强化学习和普通的监督学习有什么不同？</h4><p>​        在普通的监督学习中，我们想要构造一个模型，必须要有数据及label，然后才能在数据上训练出模型。但是对于强化学习，在开始时，没有现成的数据用于模型的训练，需要我们在环境中不对做出尝试，尝试的动作作为数据，尝试的结果（也就是环境做出的反应）作为label，一边进行尝试（生成数据），一边进行学习。</p>
+<h4 id="1-4-强化学习和监督学习有什么相同点？"><a href="#1-4-强化学习和监督学习有什么相同点？" class="headerlink" title="1.4 强化学习和监督学习有什么相同点？"></a>1.4 强化学习和监督学习有什么相同点？</h4><p>​        相同点都是根据数据进行学习，强化学习是学习怎么做出动作；监督学习是学习怎么对未知类别的数据进行分类或者回归。</p>
+<h3 id="2-强化学习的分类"><a href="#2-强化学习的分类" class="headerlink" title="2. 强化学习的分类"></a>2. 强化学习的分类</h3><h4 id="2-1-Model-free和Model-based"><a href="#2-1-Model-free和Model-based" class="headerlink" title="2.1 Model-free和Model-based"></a>2.1 Model-free和Model-based</h4><p>​        Model-Free不需要对环境进行建模，我们也不需要知道转移概率和回报函数。我们只需要学习在状态s下，每个动作的Q值，或者我们直接学习到一个策略指导我们在状态s下应该采取什么样的动作a。问题是Model-Free不知道转移概率，也不知道回报函数，那怎么知道我在状态s下，采取动作a会到达哪个状态呢？答案是直接与环境交互，我们采取动作a，看看我们能到达哪个状态(注意：Model-Based方法并不需要真正执行动作a，因为转移概率和回报函数我们都知道，我们只需要在脑中推演就行)</p>
+<p>​        Model-Based方法对环境有一个建模过程，这个模型得学习到转移概率和回报函数。具体来说，当agent处于状态s，并且执行了动作a，我们能明确知道到达状态s′和得到回报r的概率p(s′,r|s,a)</p>
+<p><strong>例1</strong></p>
+<p>​        比如说我们在打游戏的时候，老玩家很熟悉地图，知道往哪儿走能到达哪儿，也知道到达的那个地方有什么好东西，但对于一个萌新来说，他什么都不知道，于是他只能自己先走走看，看能到达哪个地方。老玩家就有点Model-Based的味道，而新玩家就更像Model-Free。</p>
+<p><strong>例2</strong></p>
+<p>​        Assume the task of deciding which route to take on the way home from work on a Friday evening. In model-based computation, you search through a previously learned model (i.e. you have a map and you follow each route based on the model) whereas in model-free computation you simply act based on an experience that suggests avoiding the freeway would typically get you home faster.</p>
+<p><img src="https://qph.fs.quoracdn.net/main-qimg-1ef6c0386e80876130d57fe256dde659" alt="avatar"></p>
+<p><strong>分类</strong></p>
+<p> Q learning, Sarsa, Policy Gradients 这些方法都可以用Model-free实现，也可以用Model-based实现</p>
+<h4 id="基于概率和基于价值"><a href="#基于概率和基于价值" class="headerlink" title="基于概率和基于价值"></a>基于概率和基于价值</h4><p>基于概率是指输出的结果是做出某一种动作的概率值，然后依不同的概率从所有的动作中选择一种动作。这可能就存在某一种动作的概率值虽然很低，但还是被选中。 Policy Gradients是基于概率的强化学习。</p>
+<p>基于价值的强化学习就显得简单了一些，系统根据当前的环境计算每种动作可能带来的价值，然后选择价值最大的动作。 Q learning, Sarsa是基于价值的强化学习。</p>
+<p>结合这两类方法的优势之处, 创造更牛逼的一种方法, 叫做 Actor-Critic, actor 会基于概率做出动作, 而 critic 会对做出的动作给出动作的价值, 这样就在原有的 policy gradients 上加速了学习过程.</p>
+<h4 id="回合更新和单步更新"><a href="#回合更新和单步更新" class="headerlink" title="回合更新和单步更新"></a>回合更新和单步更新</h4><p>顾名思义，单步更新指每次做出动作后，根据动作带来的价值对强化学习网络权重进行更新；回合更新指的是每完成一个回合的动作后再进行更新。</p>
+<p> Monte-carlo learning 和基础版的 policy gradients 等 都是回合更新制, Qlearning, Sarsa, 升级版的 policy gradients 等都是单步更新制. 因为单步更新更有效率, 所以现在大多方法都是基于单步更新. </p>
+<h4 id="在线学习和离线学习"><a href="#在线学习和离线学习" class="headerlink" title="在线学习和离线学习"></a>在线学习和离线学习</h4><p>在线学习指的是必须是一边采取动作，一边更新网络权重；离线学习可以不一定是一边进行动作，一边更新权重，可以采取先一直采取动作，然后再统一进行更新。</p>
+<p>典型的在线学习就是 Sarsa 了, 还有一种优化 Sarsa 的算法, 叫做 Sarsa lambda, 最典型的离线学习就是 Q learning, 后来人也根据离线学习的属性, 开发了更强大的算法, 比如让计算机学会玩电动的 Deep-Q-Network.</p>
+<h3 id="3、什么是Q-Learning"><a href="#3、什么是Q-Learning" class="headerlink" title="3、什么是Q-Learning?"></a>3、什么是Q-Learning?</h3><p>$$</p>
+<p>$$</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/强化学习/" rel="tag"># 强化学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/09/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/28/影视资源/" rel="prev" title="影视资源">
+                影视资源 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">高志朋</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#强化学习"><span class="nav-number">1.</span> <span class="nav-text">强化学习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-什么是强化学习"><span class="nav-number">1.1.</span> <span class="nav-text">1 什么是强化学习</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-我们从一个小孩子学走路的例子开始解释什么是强化学习。"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 我们从一个小孩子学走路的例子开始解释什么是强化学习。</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1-1-小孩子开始走路并成功到达了沙发"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">1.1.1 小孩子开始走路并成功到达了沙发</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1-2-小孩子开始走路，再到达沙发之前摔倒了"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">1.1.2 小孩子开始走路，再到达沙发之前摔倒了</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-强化学习"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 强化学习</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-强化学习和普通的监督学习有什么不同？"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3 强化学习和普通的监督学习有什么不同？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-强化学习和监督学习有什么相同点？"><span class="nav-number">1.1.4.</span> <span class="nav-text">1.4 强化学习和监督学习有什么相同点？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-强化学习的分类"><span class="nav-number">1.2.</span> <span class="nav-text">2. 强化学习的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-Model-free和Model-based"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 Model-free和Model-based</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基于概率和基于价值"><span class="nav-number">1.2.2.</span> <span class="nav-text">基于概率和基于价值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#回合更新和单步更新"><span class="nav-number">1.2.3.</span> <span class="nav-text">回合更新和单步更新</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在线学习和离线学习"><span class="nav-number">1.2.4.</span> <span class="nav-text">在线学习和离线学习</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、什么是Q-Learning"><span class="nav-number">1.3.</span> <span class="nav-text">3、什么是Q-Learning?</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">高志朋</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.1.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.1"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
