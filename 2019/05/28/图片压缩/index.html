@@ -96,15 +96,18 @@
 
 
 
-  <meta name="keywords" content="图像压缩 python编程">
+  <meta name="description" content="ImageCompressMotivationIn many cases, we need to upload an image with the specified number of bytes. For example, we post an article on WeChat that requires the size of the image to be no more than 2">
+<meta name="keywords" content="python编程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="图片压缩">
 <meta property="og:url" content="http://www.graypaul.top/2019/05/28/图片压缩/index.html">
 <meta property="og:site_name" content="科研狗的博客">
+<meta property="og:description" content="ImageCompressMotivationIn many cases, we need to upload an image with the specified number of bytes. For example, we post an article on WeChat that requires the size of the image to be no more than 2">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-28T13:36:22.595Z">
+<meta property="og:updated_time" content="2019-05-29T03:29:42.627Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图片压缩">
+<meta name="twitter:description" content="ImageCompressMotivationIn many cases, we need to upload an image with the specified number of bytes. For example, we post an article on WeChat that requires the size of the image to be no more than 2">
 
 
 
@@ -417,12 +420,24 @@
                 
               
 
-              <time title="创建时间：2019-05-28 21:26:06 / 修改时间：21:36:22" itemprop="dateCreated datePublished" datetime="2019-05-28T21:26:06+08:00">2019-05-28</time>
+              <time title="创建时间：2019-05-28 21:26:06" itemprop="dateCreated datePublished" datetime="2019-05-28T21:26:06+08:00">2019-05-28</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-29 11:29:42" itemprop="dateModified" datetime="2019-05-29T11:29:42+08:00">2019-05-29</time>
               
             
           </span>
@@ -474,7 +489,13 @@
       
 
       
-        
+        <h1 id="ImageCompress"><a href="#ImageCompress" class="headerlink" title="ImageCompress"></a>ImageCompress</h1><h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p>In many cases, we need to upload an image with the specified number of bytes. For example, we post an article on WeChat that requires the size of the image to be no more than 2 Mbytes.</p>
+<h2 id="Goal"><a href="#Goal" class="headerlink" title="Goal"></a>Goal</h2><p>Compress jpg image to a specific bytes by python GUI<br>python GUI编程实现图片压缩（目前只针对JPG文件）</p>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>1、When we look up the detail information of a jpg image in winsows system , the bytes of the image are usually not equal to the number of pixels multiply the bytes per pixel. The reason is jpg used to be compressed, while we cannot find the compress  ratio in windows system .<br>2、In Pillow, when we save a image ,we can specify a quality, the bigger quality the more bytes<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">im.save(counter, format=<span class="string">'JPEG'</span>, subsampling=subsampling, quality=quality)</span><br></pre></td></tr></table></figure></p>
+<p>3、So, in order to convert the JPG image to specific bytes, we should find the  suitable qulity using Binary Search<br>4、Tkinter is used to show the graphical interfaces<br>5、pyinstaller is used to make a *.exe file </p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tkinter <span class="keyword">as</span> tk</span><br><span class="line"><span class="keyword">from</span> tkinter.filedialog <span class="keyword">import</span> askopenfilename, askdirectory</span><br><span class="line"><span class="keyword">from</span> tkinter <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">file_counter</span><span class="params">(object)</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">		self.position = self.size = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">seek</span><span class="params">(self, offset, whence=<span class="number">0</span>)</span>:</span></span><br><span class="line">		<span class="keyword">if</span> whence == <span class="number">1</span>:</span><br><span class="line">			offset += self.position</span><br><span class="line">		<span class="keyword">elif</span> whence == <span class="number">2</span>:</span><br><span class="line">			offset += self.size</span><br><span class="line">		self.position = min(offset, self.size)</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">tell</span><span class="params">(self)</span>:</span></span><br><span class="line">		<span class="keyword">return</span> self.position</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">write</span><span class="params">(self, string)</span>:</span></span><br><span class="line">		self.position += len(string)</span><br><span class="line">		self.size = max(self.size, self.position)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">master</span><span class="params">()</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">		self.m = tk.Tk(className=<span class="string">"图片压缩（版本1.0）"</span>)</span><br><span class="line">		self.file = StringVar()</span><br><span class="line">		self.path = StringVar()</span><br><span class="line">		self.size = StringVar()</span><br><span class="line">		self.outputmessage = StringVar()</span><br><span class="line">		Label(self.m, text=<span class="string">"输入文件"</span>, font=<span class="number">24</span>, width=<span class="number">20</span>, height=<span class="number">3</span>).grid(row=<span class="number">0</span>)</span><br><span class="line">		Label(self.m, text=<span class="string">"输出路径"</span>, font=<span class="number">24</span>, width=<span class="number">20</span>, height=<span class="number">3</span>).grid(row=<span class="number">1</span>)</span><br><span class="line">		Label(self.m, text=<span class="string">"图片大小（MB）"</span>, font=<span class="number">24</span>, width=<span class="number">20</span>, height=<span class="number">3</span>).grid(row=<span class="number">2</span>)</span><br><span class="line">		Label(self.m, text=<span class="string">"消息"</span>, font=<span class="number">24</span>, width=<span class="number">20</span>, height=<span class="number">3</span>).grid(row=<span class="number">3</span>)</span><br><span class="line">		self.inputfile = Entry(self.m, textvariable=self.file, width=<span class="number">80</span>)</span><br><span class="line">		self.inputfile.grid(row=<span class="number">0</span>, column=<span class="number">1</span>)</span><br><span class="line">		self.outputpath = Entry(self.m, textvariable=self.path, width=<span class="number">80</span>)</span><br><span class="line">		self.outputpath.grid(row=<span class="number">1</span>, column=<span class="number">1</span>)</span><br><span class="line">		self.SIZE = Entry(self.m, textvariable=self.size, width=<span class="number">80</span>)</span><br><span class="line">		self.SIZE.grid(row=<span class="number">2</span>, column=<span class="number">1</span>)</span><br><span class="line">		Button(self.m, text=<span class="string">"选择图片文件"</span>, width=<span class="number">20</span>, font=<span class="number">24</span>, command=self.selectFile, bg=<span class="string">"white"</span>).grid(row=<span class="number">0</span>, column=<span class="number">2</span>)</span><br><span class="line">		Button(self.m, text=<span class="string">"选择输出文件夹"</span>, width=<span class="number">20</span>, font=<span class="number">24</span>, command=self.SelectPath, bg=<span class="string">"white"</span>).grid(row=<span class="number">1</span>, column=<span class="number">2</span>)</span><br><span class="line">		Button(self.m, text=<span class="string">"执行压缩"</span>, width=<span class="number">20</span>, font=<span class="number">24</span>, command=<span class="keyword">lambda</span>: self.smaller_than(self.inputfile.get(),</span><br><span class="line">																							  self.SIZE.get(), self.outputpath.get())).grid(</span><br><span class="line">			row=<span class="number">2</span>, column=<span class="number">2</span>)</span><br><span class="line">		Entry(self.m, textvariable=self.outputmessage, width=<span class="number">80</span>).grid(row=<span class="number">3</span>, column=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">selectFile</span><span class="params">(self)</span>:</span></span><br><span class="line">		file_ = askopenfilename()</span><br><span class="line">		self.file.set(file_)</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">SelectPath</span><span class="params">(self)</span>:</span></span><br><span class="line">		path_ = askdirectory()</span><br><span class="line">		self.path.set(path_)</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">smaller_than</span><span class="params">(self, inputfile, size, outputpath, guess=<span class="number">70</span>, subsampling=<span class="number">1</span>, low=<span class="number">1</span>, high=<span class="number">100</span>)</span>:</span></span><br><span class="line">		inputpath, filename = os.path.split(inputfile)</span><br><span class="line">		outputfile = outputpath + <span class="string">"/"</span> + <span class="string">"new_"</span> + filename</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(inputfile) <span class="keyword">or</span> <span class="keyword">not</span> os.path.exists(outputpath):</span><br><span class="line">			self.outputmessage.set(<span class="string">"Error : input image or output path don't exist"</span>)</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		<span class="keyword">else</span>:</span><br><span class="line">			<span class="keyword">if</span> os.path.splitext(inputfile)[<span class="number">-1</span>] != <span class="string">".jpg"</span>:</span><br><span class="line">				self.outputmessage.set(<span class="string">"Error : input image isn't a jpg"</span>)</span><br><span class="line">				<span class="keyword">return</span></span><br><span class="line">			<span class="keyword">else</span>:</span><br><span class="line">				<span class="keyword">if</span> size == <span class="string">""</span> <span class="keyword">or</span> float(size)&lt;=<span class="number">0</span>:</span><br><span class="line">					self.outputmessage.set(<span class="string">"Please input a correct image size!"</span>)</span><br><span class="line">				<span class="keyword">else</span>:</span><br><span class="line">					print(inputfile, outputfile)</span><br><span class="line">					<span class="keyword">if</span> inputfile == outputfile:</span><br><span class="line">						self.outputmessage.set(</span><br><span class="line">							<span class="string">"Warn : both path and filename of input and output are same ! input image will be covered!"</span>)</span><br><span class="line">					<span class="keyword">else</span>:</span><br><span class="line">						self.outputmessage.set(<span class="string">"Compress successfully"</span>)</span><br><span class="line">					im = Image.open(inputfile)</span><br><span class="line">					<span class="keyword">while</span> low &lt; high:</span><br><span class="line">						counter = file_counter()</span><br><span class="line">						im.save(counter, format=<span class="string">'JPEG'</span>, subsampling=subsampling, quality=guess)</span><br><span class="line">						<span class="keyword">if</span> counter.size &lt; float(size) * <span class="number">1024</span> * <span class="number">1024</span>:</span><br><span class="line">							low = guess</span><br><span class="line">						<span class="keyword">else</span>:</span><br><span class="line">							high = guess - <span class="number">1</span></span><br><span class="line">						guess = (low + high + <span class="number">1</span>) // <span class="number">2</span></span><br><span class="line">					im.save(outputfile, format=<span class="string">"JPEG"</span>, quality=low)</span><br><span class="line">					<span class="keyword">return</span> self.outputmessage</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">start</span><span class="params">(self)</span>:</span></span><br><span class="line">		self.m.mainloop()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">	m = master()</span><br><span class="line">	m.start()</span><br></pre></td></tr></table></figure>
+<h2 id="代码和exe文件链接"><a href="#代码和exe文件链接" class="headerlink" title="代码和exe文件链接"></a>代码和exe文件链接</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/GrayPaul/ImageCompress</span><br></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -530,7 +551,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/图像压缩-python编程/" rel="tag"># 图像压缩 python编程</a>
+            <a href="/tags/python编程/" rel="tag"># python编程</a>
           
         </div>
       
@@ -595,8 +616,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -710,6 +740,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ImageCompress"><span class="nav-number">1.</span> <span class="nav-text">ImageCompress</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Motivation"><span class="nav-number">1.1.</span> <span class="nav-text">Motivation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Goal"><span class="nav-number">1.2.</span> <span class="nav-text">Goal</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Method"><span class="nav-number">1.3.</span> <span class="nav-text">Method</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Code"><span class="nav-number">1.4.</span> <span class="nav-text">Code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码和exe文件链接"><span class="nav-number">1.5.</span> <span class="nav-text">代码和exe文件链接</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
